@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """ 
-0-subs 
+0-subs Returns number of subscribers for a subreddit, or 0 if invalid
 """
 
 import requests
@@ -10,7 +10,7 @@ def number_of_subscribers(subreddit):
     """Return the number of subscribers for a given subreddit."""
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
     headers = {
-            'User-Agent': 'MyRedditScript/1.0 (by u/Flaky_Party_2046)'
+            "User-Agent: RedditScript/0.1 by sandrine_d"
             }
 
     try:
