@@ -1,25 +1,20 @@
 #!/usr/bin/python3
-
-"""Reddit API subscriber counter"""
-
+"""Contains the no. of subs function"""
 import requests
 
 
 def number_of_subscribers(subreddit):
-    
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {
-        'User-Agent': 'python:sub.count.script:v1.0 (by /u/your_reddit_username)'
-    }
+    """Returns the no. of subs function"""
+    reddit_url = "https://www.reddit.com/r/{}/about.json" \
+        .format(subreddit)
 
-    try:
-        response = requests.get(url, allow_redirects=False)
-        if response.status_code == 200:
-            data = response.json()
-            return data.get('data', {}).get('subscribers', 0)
-        else:
-            # Print error for debugging (optional)
-            # print(f"Error: Status code {response.status_code}")
-            return 0
-    except requests.RequestException:
-        return 0
+    header = {'User-agent': 'Mozilla/5.0'}
+    response = requests.get(reddit_url,
+                            headers=header
+                            )
+
+    if response.status_code == 200:
+        data = response.json()['data']
+        subs = data['subscribers']
+        return subs
+    return 0
